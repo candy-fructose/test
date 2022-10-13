@@ -6,7 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.lingyun.test1.cache.HobbyCache;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.Accessors;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -21,6 +24,9 @@ import java.util.List;
  */
 @Data
 @TableName("user_info")
+@Accessors(chain = true)
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @ExcelIgnore
@@ -35,7 +41,7 @@ public class User {
      * 年龄
      */
     @ExcelProperty("年龄")
-    private String age;
+    private Integer age;
     /**
      * 居住地
      */
@@ -93,6 +99,12 @@ public class User {
     @ExcelIgnore
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date updateTime;
+    @ExcelIgnore
+    private Pet pet;
+
+    public User(Pet pet) {
+        this.pet = pet;
+    }
 
     //性别数据转换
     public void exGenderStr() {

@@ -25,7 +25,7 @@ public class Myconfig {
 //        return new User(38,"myuser");
 //    }
 //
-//    @Bean("mypet")
+//    @BeanDruidDataSourceAutoConfigure
 //    public Pet getPet(){
 //        return new Pet(15,"pet");
 //    }

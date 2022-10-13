@@ -39,6 +39,11 @@ public class MybatisplusController {
         return b;
     }
 
+    @PostMapping("/testPost")
+    public void testPost(@RequestBody String name) {
+        System.out.println(name);
+    }
+
     @GetMapping("/downloadByName/{keywords}")
     public void testExceptionHandler(@PathVariable String keywords, HttpServletResponse response) {
         List<User> users = userDao.selectList(new QueryWrapper<User>().like("name", keywords).or().like("card_no", keywords));

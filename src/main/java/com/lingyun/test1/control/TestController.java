@@ -3,6 +3,7 @@ package com.lingyun.test1.control;
 import com.alibaba.excel.EasyExcel;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.lingyun.test1.bean.Car;
+import com.lingyun.test1.bean.Pet;
 import com.lingyun.test1.bean.User;
 import com.lingyun.test1.dao.UserDao;
 import com.lingyun.test1.exception.MyException;
@@ -42,7 +43,14 @@ public class TestController {
 
     @GetMapping("/testExceptionHandler")
     public void testExceptionHandler() {
+        System.out.println("hello123");
         int i = 10 / 0;
+    }
+
+    @GetMapping("/test")
+    public void test() {
+        Car car = new Car(new User(new Pet(2)));
+        System.out.println(car);
     }
 
     @GetMapping("/testMyExceptionHandler")
@@ -51,13 +59,15 @@ public class TestController {
     }
 
     @GetMapping("/login")
-    public void test1() {
+    public int test1() {
 //        List<User> users = userDao.selectList(null);
 //
 //        List<String> list =null;
 //        for(String str:list){//报错
 //            System.out.println(str);
 //        }
+//        System.out.println("hello");
+        return Runtime.getRuntime().availableProcessors();
     }
 
     @GetMapping("/show")
@@ -68,6 +78,7 @@ public class TestController {
     }
 
 
+    //通过easyexcel下载excel文件
     @GetMapping("/excelExport/{keywords}")
     public void excelExport(@PathVariable String keywords) {
         List<User> users = userDao.selectList(new QueryWrapper<User>().like("name", keywords).or().like("card_no", keywords));
